@@ -1,13 +1,17 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
   font-family: "Poppins", serif;
+  scroll-behavior: smooth;
 }
 :root {
   --color1: #151b23;
   --color2: #dc3545;
   --color3: #fff;
   --color4: #3b3b3b;
+  --text-shadow: 0px 0px 5px rgb(156, 0, 0), 0px 0px 15px rgb(204, 0, 0),
+    0px 0px 25px rgb(255, 0, 0);
 }
 
 body {
@@ -15,64 +19,96 @@ body {
   color: var(--color3);
 }
 
-.navbar {
-  background-color: rgba(21, 27, 35, 0.9);
+.heading-text {
   color: var(--color3);
+  font-size: 3rem;
+  margin: 3rem 0;
   text-align: center;
-  font-size: 18px;
-  position: -webkit-sticky; /* Untuk Safari */
+  text-shadow: var(--text-shadow);
+}
+.hero-name {
+  color: var(--color3);
+  font-size: 3rem;
+  text-shadow: var(--text-shadow);
+}
+.navbar {
+  font-size: 1rem;
+  background-color: var(--color3);
+  padding: 2rem 10%;
+  background-color: var(--color1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   position: sticky;
   top: 0;
-  width: 100%;
-  z-index: 1000; /* Agar navbar tetap di atas konten */
-}
-.navbar-brand {
-  color: var(--color3);
-  margin-top: 15px;
-}
-.navbar ul li a {
-  color: var(--color3);
-  margin: 15px 10px;
-}
-.navbar-brand:hover {
-  color: var(--color2);
-  text-shadow: 0px 0px 5px rgb(255, 0, 0), 0px 0px 10px rgb(199, 0, 0),
-    0px 0px 15px rgb(161, 0, 0);
-}
-.navbar ul li a:hover {
-  color: var(--color2);
-  font-weight: 400;
-  text-shadow: 0px 0px 5px rgb(255, 0, 0), 0px 0px 10px rgb(199, 0, 0),
-    0px 0px 15px rgb(161, 0, 0);
+  z-index: 10;
 }
 
-#hero {
-  min-height: 100vh;
-  padding-top: 90px;
-  padding-left: 250px;
-  padding-right: 250px;
+.nav-links {
+  list-style: none;
+  display: flex;
 }
 
-#hero .hero-name {
-  background-color: #dc3545;
+.nav-links a {
+  color: var(--color3);
+  text-decoration: none;
+  margin-left: 5rem;
+  display: block;
+  transition: background-color 0.3s ease;
 }
-#hero h1 {
+.nav-links .logo {
+  color: var(--color3);
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+.logo a {
+  color: var(--color3);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.nav-links a:hover {
+  color: var(--color2);
+  text-shadow: var(--text-shadow);
+}
+/* Hamburger Menu */
+.hamburger {
+  display: none;
+  font-size: 30px;
+  color: var(--color3);
+  cursor: pointer;
+}
+.container {
+  margin: 0 10%;
+}
+.container-hero {
+  display: flex;
+
+  margin: 5rem 10%;
+}
+
+.hero-text {
+  width: 70%;
+  padding-top: 5rem;
+  margin-left: 3rem;
+  align-items: center;
+}
+.hero-text h1 {
   font-size: 3rem;
-  font-weight: 700;
 }
-#hero p {
-  color: var(--color2);
-  margin-top: 1rem;
+.hero-text p {
   font-size: 2rem;
-  font-weight: 700;
+  padding-bottom: 1rem;
 }
-
-#hero img {
-  transition: transform 0.8s ease-in-out;
+.hero-img {
+  width: 50%;
 }
-#hero img:hover {
-  transform: scale(1.2);
-  transition: 0.8s ease-in-out;
+.hero-img img {
+  margin-left: 20%;
+  width: 15rem;
+  justify-content: center;
 }
 
 .text-heading {
@@ -102,12 +138,11 @@ body {
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
   color: var(--color3);
   background-color: var(--color1);
-  margin: 1rem;
 }
 .btn-main {
-  transition: background-color 0.5s ease;
   height: 40px;
   width: 150px;
+  transition: background-color 0.5s ease;
   border-radius: 5px;
   border: none;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
@@ -135,100 +170,280 @@ body {
     0px 0px 30px rgb(161, 0, 0);
 }
 
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(150px, 1fr));
-  gap: 20px;
-  justify-content: center;
-  padding-bottom: 5rem;
-}
-.grid-item {
-  height: 240px;
-  border: 5px solid #ccc;
-  background-color: #ccc;
-  border-radius: 10px;
-  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
-}
-.grid-item:hover {
-  height: 240px;
-  border: 2px solid var(--color2);
-  background-color: var(--color3);
-  box-shadow: 0px 0px 10px rgb(255, 0, 0), 0px 0px 20px rgb(199, 0, 0),
-    0px 0px 30px rgb(161, 0, 0);
-}
 #portfolio {
   padding: 5rem;
 }
-#about {
-  padding: 5rem;
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(250px, 1fr));
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
+
+.card {
+  background: rgba(59, 59, 59, 0.2);
+  border: 2px solid var(--color4);
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0px 0px 15px rgb(0, 0, 0);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out,
+    z-index 0.3s;
+  position: relative; /* Memastikan z-index berfungsi */
+  width: 100%;
+  max-width: 350px; /* Maksimum ukuran card */
+  text-align: center;
+}
+.card img {
+  width: 20rem;
+  height: 15rem;
+  object-fit: cover;
+  border-radius: 4px;
+}
+.card:hover {
+  background-color: rgb(25, 25, 25);
+  transform: scale(1.15);
+  z-index: 1;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+#about {
+  padding: 4rem;
+}
+
 .container-about {
-  background-color: var(--color4);
+  margin-top: -1rem;
+  padding: 1rem 3rem;
+  background-color: rgba(59, 59, 59, 0.2);
   border-radius: 10px;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4);
+}
+.about {
+  display: flex;
 }
 .container-about p {
   padding: 2rem 2rem 1rem;
   text-align: justify;
-}
-
-#skills .container {
-  /* background-color: var(--color4); */
-  border-radius: 10px;
-  /* box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.4); */
-  padding: 1rem 3rem 3rem;
-}
-.grid-container-skills {
-  gap: 20px;
   justify-content: center;
+}
+.skills {
   display: flex;
+  justify-content: center;
 }
-.grid-item-skill {
-  margin-top: 2rem;
-  display: grid;
-  grid-template-columns: repeat(6, auto);
-  justify-content: space-evenly;
-}
-.grid-item-skill img:hover {
-  justify-content: space-evenly;
-  box-shadow: 0px 0px 10px rgb(255, 0, 0), 0px 0px 20px rgb(199, 0, 0),
-    0px 0px 35px rgb(161, 0, 0);
-}
-
-.container-skill {
-  margin-top: 3rem;
+.skill-item {
   text-align: center;
   justify-content: center;
 }
-
+.skill-item img {
+  margin: 5px;
+  justify-content: center;
+}
 #contact {
   padding-top: 5rem;
 }
-.footer {
-  margin-top: 1rem;
-
-  /* background-color: var(--color2); */
-  text-align: center;
+.container-contact {
+  display: flex;
+  margin-top: -3rem;
+  justify-content: center;
+}
+.container-contact button {
+  margin: 1rem;
 }
 .footer a {
-  font-size: 15px;
   text-decoration: none;
-  margin-top: 10px;
-  color: var(--color3);
-  margin: 0px 1rem;
+  color: #fff;
+  stroke: 1px;
+  margin: 0 1rem;
+  align-items: center;
 }
-.footer a:hover {
-  font-size: 15px;
-  text-decoration: none;
-  margin-top: 10px;
-  color: var(--color3);
-  margin: 0px 1rem;
-  text-shadow: 0px 0px 5px rgb(255, 0, 0), 0px 0px 10px rgb(199, 0, 0),
-    0px 0px 15px rgb(161, 0, 0);
+.footer {
+  justify-content: center;
+  align-items: center;
+}
+.footer-logo {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+.footer-item {
+  display: flex;
+  justify-content: center;
+  width: 21rem;
+  text-align: center;
+  margin: 5px;
+  padding: 10px;
+}
+.footer-item a:hover {
+  transition: 0.3s ease-in-out;
+  transform: scale(1.05);
+  color: var(--color2);
+  text-shadow: 0px 0px 10px rgb(255, 0, 0), 0px 0px 20px rgb(199, 0, 0),
+    0px 0px 30px rgb(161, 0, 0);
 }
 .footer p {
-  font-size: 10px;
-  text-decoration: none;
-  margin-top: 30px;
-  color: var(--color3);
+  text-align: center;
+  font-size: 14px;
+  padding: 2rem 0 1rem 0;
+  color: #3b3b3b;
+}
+/*================================== Responsive ============================================*/
+
+@media screen and (max-width: 768px) {
+  /* Gaya untuk ponsel kecil */
+  .heading-text {
+    color: var(--color3);
+    font-size: 20px;
+    margin: 1.3rem 0;
+    text-align: center;
+    text-shadow: var(--text-shadow);
+  }
+  h1 {
+    font-size: 40px;
+  }
+  h2 {
+    font-size: 20px;
+  }
+  .navbar {
+    padding: 1rem;
+  }
+  .nav-links {
+    display: none;
+    width: 13rem;
+    height: 100vh;
+    flex-direction: column;
+    background-color: var(--color1);
+    position: absolute;
+    top: 75px;
+    left: 0;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+  .nav-links.active a {
+    margin: 2rem;
+    text-align: center;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .container-hero {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0;
+    justify-content: center;
+  }
+  .hero-text {
+    margin: -5px 0;
+    padding: 0;
+    width: auto;
+    order: 1;
+    text-align: center;
+  }
+  .hero-text h1 {
+    margin-top: -1rem;
+    font-size: 2rem;
+  }
+  .hero-text p {
+    font-size: 1rem;
+  }
+
+  .hero-img img {
+    width: 50%;
+    margin: 0 auto;
+    justify-content: center;
+  }
+
+  .hero-img {
+    display: flex;
+    width: 100%;
+    margin: 0;
+    order: -1;
+  }
+  .card-container {
+    display: flex;
+    justify-content: center;
+  }
+  .card:hover {
+    background-color: rgb(25, 25, 25);
+    transform: scale(1.02);
+    z-index: 1;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+  }
+  .card img {
+    width: 8rem;
+    height: 5rem;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+
+  .card h3 {
+    font-size: 16px;
+  }
+  .card p {
+    font-size: 12px;
+    text-align: justify;
+  }
+  #about {
+    margin: 1rem 0 0 0;
+    padding: 0;
+  }
+  #about h1 {
+    padding-top: 5rem;
+  }
+  .container-about {
+    background-color: transparent;
+    margin: -3rem 0;
+    padding: 10px;
+    box-shadow: none;
+    font-size: 12px;
+  }
+  .container-about .about-img img {
+    display: none;
+  }
+  .skills {
+    margin-top: 0;
+    padding: 0;
+  }
+  .skill-item img {
+    width: 50px;
+    margin: 2px;
+    justify-content: center;
+  }
+  .container-contact {
+    margin: 15px;
+    padding-bottom: 2rem;
+    text-align: center;
+  }
+  .footer {
+    margin: 0;
+  }
+  .footer-item {
+    display: inline-block;
+    width: auto;
+    margin: 1rem 0;
+    justify-content: center;
+  }
+  .footer-logo {
+    justify-content: center;
+  }
+  .footer-logo a {
+    display: none;
+  }
+  .footer p {
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  /* Gaya untuk ponsel kecil */
+  .card img {
+    width: 10rem;
+    height: 7rem;
+    object-fit: cover;
+    border-radius: 4px;
+  }
 }
